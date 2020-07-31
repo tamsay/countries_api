@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Country API</title>
+</head>
+<body>
+
+    <section id="fixedTop" class="sticky-top">
+    <nav id="mainNav" class="row">
+        <div id ="textLogo" class="col">
+            <p>Where in the world?</p>
+        </div>
+
+        <div id="themeSwitcher" class="col">
+            <img src="./assets/images/lock.svg" alt="switcher">
+        </div>
+    </nav>
+
+    <header class="row" id="pageHeader">
+        
+        <div class="col-sm-6" id="searchBar">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="search" name="countrySearch" id="countrySearch" placeholder="Search for a country..." autofocus>
+        </div>
+
+        <div class="col-sm-6" id="filterBar">
+            <select id="continent" class="" name="continent">
+                <option value="" disabled selected>Filter by Region</option>
+                <option value="africa">Africa</option>
+                <option value="america">America</option>
+                <option value="asia">Asia</option>
+                <option value="europe">Europe</option>
+                <option value="oceania">Oceania</option>
+            </select>    
+        </div>
+    </header>  
+    </section>  
+
+    <main id="mainContentArea">
+        <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+
+                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    
+                    <!-- <div class="modal-header">
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" data-keyboard="true">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+
+                    <div class="modal-body row">
+                        <div class="col-md-6 modal-flag">
+                            <img src="./assets/images/profileicon.png" alt="flag">
+                        </div>
+
+                        <div class="col-md-6 country-details">
+                            <div class="row name-header"> 
+                                <h4>NIGERIA</h4>
+                            </div>
+                            <div class='row other-info'>
+                                <div class="col-md-6 first-col">
+                                    <p class="modal-paragraph"><span class="font-weight-bold">Native Name: </span><span></span> </p>
+                                    <p class="modal-paragraph"><span class="font-weight-bold">Population: </span><span></span> </p>
+                                    <p class="modal-paragraph"><span class="font-weight-bold">Region: </span><span></span> </p>
+                                    <p class="modal-paragraph"><span class="font-weight-bold">Sub Region: </span><span></span> </p>
+                                    <p class="modal-paragraph"><span class="font-weight-bold">Capital: </span><span></span> </p>
+                                </div>
+
+                                <div class="col-md-6 second-col">
+                                    <p class="modal-paragraph"><span class="font-weight-bold">Top Level Domain: </span><span></span> </p>
+                                    <p class="modal-paragraph"><span class="font-weight-bold">Currencies: </span><span></span> </p>
+                                    <p class="modal-paragraph"><span class="font-weight-bold">Languages: </span><span></span> </p>
+                                </div>
+                            </div>
+                            <div class='row borderCountries'>
+                                <h5>Border Countries</h5>
+                                <ul class="borderCountries-list">
+                                    <li>country1</li>
+                                    <li>country2</li>
+                                    <li>country3</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div> -->
+                </div>
+            
+            </div>
+        </div>
+        
+
+        <div class="row" id="cardWrapper">   
+            
+        </div>
+    </main>
+
+    <script src="js/jquery3.5.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
