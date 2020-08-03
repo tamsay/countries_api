@@ -320,7 +320,8 @@
 
 /* Header Section */
 #pageHeader{
-    padding: 0em 2em 0.5em 2em;
+    padding: 0em 0em 0.5em 0em;
+    margin: 0em 2em;
 }
 #searchBar{
     padding: 0em 0em 0em 0em;
@@ -883,6 +884,6 @@ font-size: 0.875em;
     }
     .modal-dialog{
         padding: 0em 2em;
-        top: 3em;
+        top: 2.75em;
         }
 }
