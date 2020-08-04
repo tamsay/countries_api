@@ -1,3 +1,4 @@
+'use strict'
 let cardWrapper = document.querySelector('#cardWrapper')
 let filterInput = document.querySelector('#continent')
 let searchInput = document.querySelector('#countrySearch')
@@ -399,3 +400,31 @@ fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;region;flag;popu
     getFullDetails(data, [...data])
 })
 
+//Theme Switcher
+let checkbox = document.querySelector('input[name=theme]');
+const theme = localStorage.getItem('theme');
+let body = document.body;
+
+if(theme){
+    body.classList.add(theme);
+}
+
+checkbox.addEventListener('change', function() {
+    if(this.checked) {
+        trans()
+        body.classList.replace('dark', 'light')
+        localStorage.setItem('theme', 'light')
+    } else {
+        trans()
+        body.classList.replace('light', 'dark')
+        localStorage.setItem('theme', 'dark')
+    }
+})
+
+let trans = () => {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+        document.documentElement.classList.remove('transition')
+    }, 1000)
+}
+trans();
