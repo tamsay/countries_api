@@ -24,6 +24,7 @@ let displayLoader=()=>{
 let createCard=(result)=>{
 
     cardWrapper.innerText = '';
+
     for(let x=0; x < result.length; x++){
 
         let card = document.createElement('div')
@@ -118,7 +119,7 @@ let openBorderCountry =(result)=>{
             })
             elements.addEventListener('click', ()=>{
                btnClose.click();
-               cardWrapper.innerHTML = '';
+            //    cardWrapper.innerHTML = '';
                createCard(newResult); 
                getFullDetails(newResult, result)
 
