@@ -77,6 +77,40 @@ let createCard=(result)=>{
     }
 }
 
+let openBorderCountry =(result)=>{
+
+    let borders = document.querySelectorAll('.country-list-item')
+    let btnClose = document.querySelector('.btn-close');
+
+    [...borders].map(elements=>{
+
+        if(elements.textContent.toLowerCase().includes('does not have any border')){
+            console.log(elements)
+            elements.addEventListener('click', ()=>{
+                btnClose.click();
+            })
+        }
+        else{
+            let newResult = [];
+            let country = elements.textContent.toLowerCase();
+            [...result].filter(items=>{
+                if(items.name.toLowerCase() === country){
+                    newResult.push(items)
+                } 
+            })
+            elements.addEventListener('click', ()=>{
+               console.log(newResult[0]);
+               btnClose.click();
+               cardWrapper.innerHTML = '';
+
+               createCard(newResult);
+               getFullDetails(newResult, result);
+
+            })
+        }
+    })
+}
+
 let searchCountry=(result)=>{
     let allResult = [...result];
     searchInput.addEventListener('input', ()=>{
@@ -138,7 +172,7 @@ let getFullDetails=(result, allResult)=>{
                 modalHeader.className = 'modal-header'
             
             let btnClose = document.createElement('button')
-                btnClose.className = 'btn-close';
+                btnClose.className = 'btn-close btn';
                 btnClose.setAttribute('data-dismiss', 'modal')
                 btnClose.setAttribute('data-keyboard', 'true')
                 btnClose.setAttribute('aria-label', 'Close');
@@ -358,21 +392,21 @@ let getFullDetails=(result, allResult)=>{
             })
 
             if(borderNames.length === 0){
-                    let countryList = document.createElement('span');
-                    countryList.className = 'country-list-item'
+                    let countryList = document.createElement('button');
+                    countryList.className = 'country-list-item btn'
                     countryList.innerText = `${fullInfoArray[0].name} does not have any Border Country`
                 
                     borderCountries.appendChild(countryList)
             }
             else{
                 borderNames.map(item=>{
-                        let countryList = document.createElement('span');
-                        countryList.className = 'country-list-item'
+                        let countryList = document.createElement('button');
+                        countryList.className = 'country-list-item btn'
                         countryList.innerText = `${item}`
                     
                         borderCountries.appendChild(countryList)
-
                 })
+
             }
 
             // Country Details Creation
@@ -387,6 +421,9 @@ let getFullDetails=(result, allResult)=>{
             modalContent.appendChild(modalHeader)
             modalContent.appendChild(modalBody)
 
+            console.log(allResult)
+            openBorderCountry(allResult);
+
         }); 
     }
 }
@@ -398,6 +435,7 @@ fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;region;flag;popu
     searchCountry(data);
     filterCountry(data)
     getFullDetails(data, [...data])
+    openBorderCountry(data)
 })
 
 //Theme Switcher

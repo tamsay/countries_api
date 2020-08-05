@@ -94,7 +94,8 @@ html.transition *:after {
 #searchBar input{
     background-color: var(--bg2);
     border: none;
-    padding: 1em 0em 1em 0em;
+    padding: 1em 1em 1em 1em;
+    padding-right: 1em !important;
     margin: 0%;
     width: 100%;
     color: var(--text);
@@ -247,7 +248,7 @@ html.transition *:after {
     border-radius: 5px;
   }
   .modal-header .btn-close:hover {
-    color: var(--white);
+    color: var(--bg2);
     background-color: var(--text);
   }
   .modal-header .closeBtnSpan{
@@ -317,13 +318,19 @@ html.transition *:after {
 }
 .country-list-item{
     background-color: var(--bg2);
+    color: var(--text);
     margin: 0.25em 0.5em 0.25em 0em;
     padding: 0.25em 1em;
     /* border: 1px solid black; */
 }
+.country-list-item:hover{
+    background-color: var(--text);
+    color: var(--bg2)
+}
 
-/* Extra small devices (phones, 600px and down) */
+/* Extra small devices (phones, 575px and down) */
 @media (max-width: 575px) {
+
     /* Top Navigation Section */
 #mainNav{
     padding: 1em 2em;
@@ -358,7 +365,6 @@ html.transition *:after {
 #filterBar #continent{
     padding: 0.5em 1em 0.5em 1em;
     width: 75%;
-    /* font-size: 1em; */
 }
 #continent option{
     font-size: 0.75em;
@@ -461,6 +467,7 @@ html.transition *:after {
 }
 
 @media (min-width: 576px) and (max-width:767px) {
+
     /* Top Navigation Section */
 #mainNav{
 padding: 1em 2em;
@@ -598,6 +605,7 @@ font-size: 1.15em;
 }
 
 @media (min-width: 768px) and (max-width:991px) {
+
     /* Top Navigation Section */
 #mainNav{
 padding: 1em 2em;
@@ -637,7 +645,6 @@ width: 75%;
 #filterBar #continent{
 padding: 0.5em 1em;
 width: 100%;
-/* font-size: 1em; */
 }
 #continent option{
 font-size: 0.75em;
@@ -760,7 +767,6 @@ padding: 1em 2em 0.5em 2em;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
-/* align-items: center; */
 }
 #searchBar{
 padding: 0em 0em 0em 0em;
@@ -882,30 +888,3 @@ padding: 0.25em 0.5em;
 font-size: 0.875em;
 }
 }
-
-/* @media (orientation: landscape){
-    #mainNav{
-        background-color: var(--bg2);
-        color: var(--text);
-        padding: 0.25em 2em;
-        margin: 0em 0em 0.5em 0em;
-    }
-    #pageHeader{
-        padding: 0em 0em 0.5em 0em;
-        margin: 0em 2em;
-        position: sticky;
-        background-color: var(--bg2);
-        background-color: none;
-    }
-    #searchBar{
-        margin-bottom: 0%;
-    }
-    #filterBar #continent{
-        padding: 0.5em 1em;
-        margin-top: 0em;
-    }
-    .modal-dialog{
-        padding: 0em 2em;
-        top: 2.75em;
-        }
-} */
