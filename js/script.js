@@ -3,14 +3,34 @@ let cardWrapper = document.querySelector('#cardWrapper')
 let filterInput = document.querySelector('#continent')
 let searchInput = document.querySelector('#countrySearch')
 
+let displayLoader=()=>{
+    let wrapper = document.createElement('div');
+        wrapper.className = 'loader-div';
+    
+    let loader = document.createElement('img');
+        loader.className = 'loader-image';
+        loader.setAttribute('alt', 'loader');
+        loader.setAttribute('src', './assets/images/loader3.gif')
+    
+    let text = document.createElement('p');
+        text.className = 'loading';
+        text.innerText = '...loading...';
+    
+    wrapper.appendChild(loader);
+    wrapper.appendChild(text)
+    cardWrapper.appendChild(wrapper)
+}
+
 let createCard=(result)=>{
+
+    cardWrapper.innerText = '';
     for(let x=0; x < result.length; x++){
 
         let card = document.createElement('div')
             card.className = 'card';
-
+        
         let flag = document.createElement('img');
-            flag.className = 'card-img-top btn'
+            flag.className = 'card-img-top'
             flag.setAttribute('src', 'data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw==');
             flag.setAttribute('alt', 'flag image')
             flag.setAttribute('data-toggle', 'modal');
@@ -79,13 +99,11 @@ let createCard=(result)=>{
 
 let openBorderCountry =(result)=>{
 
-    let borders = document.querySelectorAll('.country-list-item')
+    let borders = document.querySelectorAll('.country-list-item');
     let btnClose = document.querySelector('.btn-close');
 
     [...borders].map(elements=>{
-
         if(elements.textContent.toLowerCase().includes('does not have any border')){
-            console.log(elements)
             elements.addEventListener('click', ()=>{
                 btnClose.click();
             })
@@ -99,13 +117,16 @@ let openBorderCountry =(result)=>{
                 } 
             })
             elements.addEventListener('click', ()=>{
-               console.log(newResult[0]);
                btnClose.click();
                cardWrapper.innerHTML = '';
+               createCard(newResult); 
+               getFullDetails(newResult, result)
 
-               createCard(newResult);
-               getFullDetails(newResult, result);
+               let card = document.querySelector('.card-img-top');
 
+                setTimeout(() => {
+                    card.click();
+                }, 400);
             })
         }
     })
@@ -137,11 +158,16 @@ let filterCountry=(result)=>{
         let filterValue = filterInput.value.toLowerCase();
 
         let newResult = []
-        result.filter(items=>{
-            if(items.region.toLowerCase().includes(filterValue)){
-                newResult.push(items)
-            } 
-        })
+        if(filterValue === 'all'){
+            newResult = [...result];
+        }
+        else{
+            result.filter(items=>{
+                if(items.region.toLowerCase().includes(filterValue)){
+                    newResult.push(items)
+                } 
+            })
+        }
         cardWrapper.innerHTML = '';
         createCard(newResult)  
         getFullDetails(newResult, allResult)  
@@ -150,12 +176,13 @@ let filterCountry=(result)=>{
 
 
 let getFullDetails=(result, allResult)=>{
+    let apiData = [...allResult];
 
-    let allCards = document.querySelectorAll('.btn')
+    let allCards = document.querySelectorAll('.card')
 
     for(let x=0; x<allCards.length; x++){
         allCards[x].addEventListener('click', ()=>{
-            let countryName = (allCards[x].parentNode).querySelector('h5').textContent;
+            let countryName = allCards[x].querySelector('h5').textContent;
 
             let fullInfoArray = [];
 
@@ -186,9 +213,27 @@ let getFullDetails=(result, allResult)=>{
                 backArrow.className = 'fa fa-long-arrow-left'
             
             btnClose.appendChild(backArrow);
-
             btnClose.appendChild(closeBtnSpan)
+
+            let homeButton = document.createElement('button')
+                homeButton.className = 'btn-home btn';
+                // homeButton.setAttribute('data-dismiss', 'modal')
+                // homeButton.setAttribute('data-keyboard', 'true')
+                homeButton.setAttribute('aria-label', 'home');
+            
+            let homeBtnSpan = document.createElement('span')
+                homeBtnSpan.className = 'closeBtnSpan'
+                homeBtnSpan.setAttribute('aria-hidden', 'true')
+                homeBtnSpan.innerText = 'Home';
+
+            let homeIcon = document.createElement('i')
+                homeIcon.className = 'fa fa-home'
+            
+            homeButton.appendChild(homeIcon);
+            homeButton.appendChild(homeBtnSpan)
+
             modalHeader.appendChild(btnClose)
+            modalHeader.appendChild(homeButton)
 
             // Modal Body Section
             let modalBody = document.createElement('div');
@@ -421,22 +466,32 @@ let getFullDetails=(result, allResult)=>{
             modalContent.appendChild(modalHeader)
             modalContent.appendChild(modalBody)
 
-            console.log(allResult)
+            homeButton.addEventListener('click', ()=>{
+                btnClose.click();
+                window.location.reload();
+            });
+
             openBorderCountry(allResult);
 
+            
         }); 
     }
 }
+let getData =(()=>{
 
-fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;region;flag;population;nativeName;subregion;topLevelDomain;currencies;languages;borders;alpha3Code;")
-.then(resp=>resp.json())
-.then(data=>{
+    displayLoader();
+
+    fetch("https://restcountries.eu/rest/v2/all?fields=name;capital;region;flag;population;nativeName;subregion;topLevelDomain;currencies;languages;borders;alpha3Code;")
+    .then(resp=>resp.json())
+    .then(data=>{
     createCard(data);
     searchCountry(data);
-    filterCountry(data)
-    getFullDetails(data, [...data])
-    openBorderCountry(data)
+    filterCountry(data);
+    getFullDetails(data, [...data]);
+    openBorderCountry(data);
 })
+
+})();
 
 //Theme Switcher
 let checkbox = document.querySelector('input[name=theme]');

@@ -132,12 +132,31 @@ html.transition *:after {
     margin: 0%;
 }
 
-
 /* Main Content Area */
 #mainContentArea{
-    padding: 1em 4em;
-    margin: 0%;
+    padding: 2em 4em;
+    margin: 0px;
     width: 100%;
+    color: var(--text);
+}
+#mainContentArea .loader-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    padding: 0em;
+}
+.loader-div img{
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+}
+.loader-div p{
+    color: var(--text);
+    font-size: 2em;
+    padding: 0%;
+    margin: 0%;
 }
 #mainContentArea .value{
     font-weight: 300;
@@ -158,6 +177,15 @@ html.transition *:after {
     background-color: var(--bg2);
     border-radius: 10px;
     border: none;
+    transition: transform 1s, 1s ease-in-out;
+}
+#mainContentArea .card:hover{
+    transform: scale(1.1);
+}
+@keyframes cardGrow {
+    0% { transform: scale(1,1) };
+    50% {transform: scale(1.05, 1.05) };
+    100% {transform: scale(1,1) };
 }
 #mainContentArea .card-body{
     color: var(--text);
@@ -172,6 +200,7 @@ html.transition *:after {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px 10px 0px 0px;
+    cursor: pointer;
 }
 .card-body{
     padding: 1em;
@@ -193,6 +222,7 @@ html.transition *:after {
     padding: 0em !important;
     position: relative;
     overflow-y: auto;
+    overflow: hidden;
 }
 .modal-backdrop{
     opacity: 0 !important;
@@ -233,12 +263,12 @@ html.transition *:after {
   }
 .modal-header{
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-between;
       padding: 0.5em;
       margin: 1em 0em;
       border: none;
 }
-  .modal-header .btn-close{
+  .modal-header .btn{
     color: var(--text); 
     background-color: var(--bg2);
     font-weight: bold;
@@ -247,11 +277,11 @@ html.transition *:after {
     border: none;
     border-radius: 5px;
   }
-  .modal-header .btn-close:hover {
+  .modal-header .btn:hover {
     color: var(--bg2);
     background-color: var(--text);
   }
-  .modal-header .closeBtnSpan{
+  .modal-header .btn{
       margin: 0em 0em 0em 0.5em;
   }
   .modal-body{
@@ -372,7 +402,7 @@ html.transition *:after {
 
 /* Main Content Area */
 #mainContentArea{
-    padding: 0.5em 2em 0em 2em;
+    padding: 1em 2em 0em 2em;
 }
 #mainContentArea .value{
     font-weight: 300;
@@ -510,7 +540,7 @@ font-size: 0.75em;
 
 /* Main Content Area */
 #mainContentArea{
-padding: 0.5em 2em 0em 2em;
+padding: 1em 2em 0em 2em;
 }
 #mainContentArea .value{
 font-weight: 300;
@@ -652,7 +682,7 @@ font-size: 0.75em;
 
 /* Main Content Area */
 #mainContentArea{
-padding: 0.5em 2em 0em 2em;
+padding: 1em 2em 0em 2em;
 }
 #mainContentArea .value{
 font-weight: 300;
@@ -794,7 +824,7 @@ font-size: 0.75em;
 
 /* Main Content Area */
 #mainContentArea{
-padding: 0.5em 2em 0em 2em;
+padding: 1em 2em 0em 2em;
 }
 #mainContentArea .value{
 font-weight: 300;
