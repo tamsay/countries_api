@@ -28,13 +28,13 @@
     </nav>
 
     <header class="row sticky-top" id="pageHeader">
-        <div class="col-sm-6 col-md-12 col-xl-6" id="searchBar">
+        <div class="col-sm-6 col-md-12 col-xl-6" id="searchBar" aria-label="search country">
             <i class="fa fa-search" aria-hidden="true"></i>
             <input type="search" name="countrySearch" id="countrySearch" placeholder="Search for a country..." autofocus>
         </div>
 
-        <div class="col-sm-6 col-md-12 col-xl-6" id="filterBar">
-            <select id="continent" class="" name="continent">
+        <div class="col-sm-6 col-md-12 col-xl-6" id="filterBar" aria-label="filter-regions">
+            <select id="continent" class="" name="continent" aria-label="select continent">
                 <option value="" disabled selected>Filter by Region</option>
                 <option value="africa">Africa</option>
                 <option value="america">America</option>
@@ -47,7 +47,7 @@
 
     <main id="mainContentArea">
         <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal mainContentArea" aria-hidden="true">
 
                 <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
