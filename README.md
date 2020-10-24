@@ -24,7 +24,7 @@ No Javascript framework was used on the frontend.
 
 ## Live Demo
 
-[Hosted Link](festive-agnesi-5093de.netlify.app)
+[Hosted Link](https://festive-agnesi-5093de.netlify.app)
 
 ## Author
 
