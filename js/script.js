@@ -471,7 +471,7 @@ let getData = (() => {
   displayLoader();
 
   fetch(
-    "https://restcountries.eu/rest/v2/all?fields=name;capital;region;flag;population;nativeName;subregion;topLevelDomain;currencies;languages;borders;alpha3Code;"
+    "https://restcountries.com/v2/all?fields=name;capital;region;flag;population;nativeName;subregion;topLevelDomain;currencies;languages;borders;alpha3Code;"
   )
     .then((resp) => resp.json())
     .then((data) => {
