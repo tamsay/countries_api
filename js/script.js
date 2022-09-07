@@ -339,7 +339,7 @@ let getFullDetails = (result, allResult) => {
 
       let modalCapitalValue = document.createElement("span");
       modalCapitalValue.className = "modal-capital value";
-      modalCapitalValue.innerText = `${fullInfoArray[0].capital}`;
+      modalCapitalValue.innerText = `${fullInfoArray[0].capital || "N/A"}`;
 
       modalCapitalParagraph.appendChild(modalCapitalSpan);
       modalCapitalParagraph.appendChild(modalCapitalValue);
@@ -373,7 +373,7 @@ let getFullDetails = (result, allResult) => {
 
       let modalCurrenciesValue = document.createElement("span");
       modalCurrenciesValue.className = "modal-currencies value";
-      modalCurrenciesValue.innerText = `${fullInfoArray[0].currencies[0].name}`;
+      modalCurrenciesValue.innerText = `${fullInfoArray[0]?.currencies && fullInfoArray[0]?.currencies[0]?.name}`;
 
       modalCurrenciesParagraph.appendChild(modalCurrenciesSpan);
       modalCurrenciesParagraph.appendChild(modalCurrenciesValue);
@@ -423,7 +423,7 @@ let getFullDetails = (result, allResult) => {
 
       let borderNames = [];
       let borderList = fullInfoArray[0].borders;
-      borderList.map((items) => {
+      Array.isArray(borderList) && borderList.map((items) => {
         allResult.map((elements) => {
           if (elements.alpha3Code === items) {
             borderNames.push(elements.name);
